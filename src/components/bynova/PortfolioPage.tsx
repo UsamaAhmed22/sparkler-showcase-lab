@@ -25,6 +25,7 @@ import {
   X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import type { ReactNode } from "react";
 import logoAsset from "@/assets/bynova-logo.png.asset.json";
 import heroImage from "@/assets/bynova-hero.jpg";
 import projectsImage from "@/assets/bynova-projects.jpg";
@@ -126,7 +127,7 @@ function Hero() {
   );
 }
 
-function SectionHeading({ eyebrow, title, copy }: { eyebrow: string; title: string; copy?: string }) {
+function SectionHeading({ eyebrow, title, copy }: { eyebrow: string; title: ReactNode; copy?: string }) {
   return <div><p className="eyebrow">{eyebrow}</p><h2 className="mt-2 font-display text-3xl font-semibold leading-tight md:text-4xl">{title}</h2>{copy && <p className="mt-3 max-w-xl text-sm leading-6 text-muted-foreground">{copy}</p>}</div>;
 }
 
