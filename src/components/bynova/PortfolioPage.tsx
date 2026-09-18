@@ -27,6 +27,7 @@ import {
 import { Button } from "@/components/ui/button";
 import type { ReactNode } from "react";
 import logoAsset from "@/assets/bynova-logo.png.asset.json";
+import wordmark from "@/assets/bynova-wordmark.png";
 import heroImage from "@/assets/bynova-hero.jpg";
 import projectsImage from "@/assets/bynova-projects.jpg";
 import moonImage from "@/assets/bynova-moon.jpg";
@@ -65,13 +66,8 @@ const testimonials = [
 
 function Brand({ compact = false }: { compact?: boolean }) {
   return (
-    <a href="#home" aria-label="BYNOVA home" className="group flex items-center gap-2 overflow-hidden">
-      <span className="relative grid size-8 place-items-center" aria-hidden="true">
-        <span className="absolute h-7 w-[2px] rotate-45 bg-brand-gradient" />
-        <span className="absolute h-7 w-[2px] -rotate-45 bg-brand-gradient" />
-        <span className="size-2 rotate-45 border border-foreground/80" />
-      </span>
-      <span className="font-display text-base font-semibold tracking-[0.28em] text-foreground">BYNOVA</span>
+    <a href="#home" aria-label="BYNOVA home" className="group flex items-center overflow-hidden">
+      <img src={wordmark} width={410} height={60} alt="BYNOVA" className="h-auto w-36 object-contain" />
       {!compact && <span className="sr-only">Your vision. Our tech.</span>}
     </a>
   );
@@ -136,7 +132,7 @@ function Services() {
     <section id="services" className="section-band py-20">
       <div className="site-shell">
         <div className="mb-9 grid gap-5 md:grid-cols-2 md:items-end"><SectionHeading eyebrow="Our Services" title={<>Everything You Need<br />Under One Roof</>} /><p className="max-w-md justify-self-end text-sm leading-6 text-muted-foreground">From concept to launch and beyond — we offer end-to-end digital solutions to help your business grow, stand out and stay ahead.</p></div>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
           {services.map(([Icon, title, copy], index) => <article key={title} className={`service-card ${index >= 4 ? "lg:col-span-1" : ""}`}><span className={`icon-tile tone-${index % 5}`}><Icon /></span><h3>{title}</h3><p>{copy}</p></article>)}
         </div>
       </div>

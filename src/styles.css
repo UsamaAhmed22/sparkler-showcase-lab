@@ -181,7 +181,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .nav-link { position: relative; color: var(--muted-foreground); font-size: .75rem; transition: color .2s ease; }
 .nav-link:hover, .nav-link.is-active { color: var(--foreground); }
 .nav-link.is-active::after { content: ""; position: absolute; left: 0; right: 0; bottom: -.55rem; height: 1px; background: var(--brand-gradient); }
-.service-card { min-height: 150px; border: 1px solid var(--border); border-radius: var(--radius); background: oklch(0.12 0.028 248 / .74); padding: 1.1rem; transition: transform .25s ease, border-color .25s ease; }
+.service-card { min-height: 142px; border: 1px solid var(--border); border-radius: var(--radius); background: oklch(0.12 0.028 248 / .74); padding: 1.1rem; transition: transform .25s ease, border-color .25s ease; }
 .service-card:hover { transform: translateY(-3px); border-color: var(--brand-blue); }
 .service-card h3 { margin-top: .8rem; font-size: .82rem; font-weight: 600; }
 .service-card p { margin-top: .35rem; color: var(--muted-foreground); font-size: .7rem; line-height: 1.55; }
