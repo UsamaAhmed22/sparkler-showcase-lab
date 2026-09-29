@@ -26,16 +26,26 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { ReactNode } from "react";
-import logoAsset from "@/assets/bynova-logo.png.asset.json";
-import wordmark from "@/assets/bynova-wordmark.png";
+import logoAsset from "@/assets/bynova-tech-logo.png.asset.json";
 import heroImage from "@/assets/bynova-hero.jpg";
-import projectsImage from "@/assets/bynova-projects.jpg";
 import moonImage from "@/assets/bynova-moon.jpg";
+import cloudProjectImage from "@/assets/project-cloud.jpg";
+import fitnessProjectImage from "@/assets/project-fitness.jpg";
+import analyticsProjectImage from "@/assets/project-analytics.jpg";
+import brandProjectImage from "@/assets/project-brand.jpg";
 import { portfolioQueryOptions } from "@/lib/portfolio";
 import { closeMobileMenu, setActiveProject, toggleMobileMenu } from "@/store/store";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 
 const nav = ["Home", "Services", "Portfolio", "About", "Contact"];
+
+const projectVisuals = [
+  cloudProjectImage,
+  fitnessProjectImage,
+  analyticsProjectImage,
+  brandProjectImage,
+  cloudProjectImage,
+] as const;
 
 const services = [
   [Code2, "Website Development", "Modern, fast and responsive websites tailored to your brand."],
@@ -66,8 +76,8 @@ const testimonials = [
 
 function Brand({ compact = false }: { compact?: boolean }) {
   return (
-    <a href="#home" aria-label="BYNOVA home" className="group flex items-center overflow-hidden">
-      <img src={wordmark} width={410} height={60} alt="BYNOVA" className="h-auto w-36 object-contain" />
+    <a href="#home" aria-label="BYNOVA Tech home" className="group flex shrink-0 items-center">
+      <img src={logoAsset.url} width={727} height={414} alt="BYNOVA Tech" className={`${compact ? "h-14" : "h-16"} w-auto object-contain`} />
       {!compact && <span className="sr-only">Your vision. Our tech.</span>}
     </a>
   );
@@ -151,7 +161,7 @@ function Portfolio() {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {data.map((project, index) => (
             <article key={project.title} className={`project-card ${active === index ? "is-selected" : ""}`} onMouseEnter={() => dispatch(setActiveProject(index))}>
-              <div className="relative aspect-[1.45] overflow-hidden"><img src={projectsImage} width={1200} height={800} loading="lazy" alt="Dark product interfaces for BYNOVA portfolio projects" className={`h-full w-[240%] max-w-none object-cover ${project.crop}`} /><Button variant="glass" size="icon" className="absolute bottom-2 right-2 size-8" aria-label={`Open ${project.title}`}><ExternalLink /></Button></div>
+              <div className="relative aspect-[1.45] overflow-hidden"><img src={projectVisuals[index]} width={1200} height={800} loading="lazy" alt={`${project.title} project preview`} className={`h-full w-full object-cover ${project.crop}`} /><Button variant="glass" size="icon" className="absolute bottom-2 right-2 size-8" aria-label={`Open ${project.title}`}><ExternalLink /></Button></div>
               <div className="px-1 pb-1 pt-4"><h3 className="text-sm font-semibold">{project.title}</h3><p className="mt-1 text-[11px] text-muted-foreground">{project.category} <span className="mx-1 text-border">|</span> {project.discipline}</p></div>
             </article>
           ))}
@@ -175,7 +185,7 @@ function Testimonials() {
 }
 
 function Footer() {
-  return <><section id="contact" className="cta-band relative overflow-hidden py-14"><div className="site-shell relative z-10 grid items-center gap-6 md:grid-cols-[1.4fr_1fr_auto]"><SectionHeading eyebrow="Ready To Start?" title={<>Let’s Build Something<br />Great Together.</>} /><p className="max-w-sm text-xs leading-5 text-foreground/70">Have a project in mind? Let’s discuss how we can bring it to life — from idea to impact.</p><Button variant="glow" size="lg" asChild><a href="mailto:hello@bynova.dev">Get Started <ArrowRight /></a></Button></div></section><footer className="py-9"><div className="site-shell flex flex-col items-center justify-between gap-7 md:flex-row"><Brand compact /><nav className="flex flex-wrap justify-center gap-6">{nav.map((item) => <a key={item} href={`#${item.toLowerCase()}`} className="text-[11px] text-muted-foreground hover:text-foreground">{item}</a>)}</nav><div className="flex items-center gap-4 text-muted-foreground"><Linkedin className="size-4" /><span className="font-bold">X</span><Instagram className="size-4" /><span className="ml-3 text-[10px]">© 2026 BYNOVA</span></div></div><img src={logoAsset.url} alt="" className="sr-only" /></footer></>;
+  return <><section id="contact" className="cta-band relative overflow-hidden py-14"><div className="site-shell relative z-10 grid items-center gap-6 md:grid-cols-[1.4fr_1fr_auto]"><SectionHeading eyebrow="Ready To Start?" title={<>Let’s Build Something<br />Great Together.</>} /><p className="max-w-sm text-xs leading-5 text-foreground/70">Have a project in mind? Let’s discuss how we can bring it to life — from idea to impact.</p><Button variant="glow" size="lg" asChild><a href="mailto:hello@bynova.dev">Get Started <ArrowRight /></a></Button></div></section><footer className="py-9"><div className="site-shell flex flex-col items-center justify-between gap-7 md:flex-row"><Brand compact /><nav className="flex flex-wrap justify-center gap-6">{nav.map((item) => <a key={item} href={`#${item.toLowerCase()}`} className="text-[11px] text-muted-foreground hover:text-foreground">{item}</a>)}</nav><div className="flex items-center gap-4 text-muted-foreground"><Linkedin className="size-4" /><span className="font-bold">X</span><Instagram className="size-4" /><span className="ml-3 text-[10px]">© 2026 BYNOVA</span></div></div></footer></>;
 }
 
 export function PortfolioPage() {
