@@ -25,10 +25,11 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
-      - run: cp dist/index.html dist/404.html
+      - run: cp PATH_TO_OUTPUT/index.html PATH_TO_OUTPUT/404.html
+      - run: echo "sparkler.bynovatech.me" > PATH_TO_OUTPUT/CNAME
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: PATH_TO_OUTPUT
 
   deploy:
     needs: build
