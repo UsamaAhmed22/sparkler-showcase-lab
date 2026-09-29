@@ -19,17 +19,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: npm
-      - run: npm ci
+          node-version: 22
+
+      # Repo only has bun.lock (no package-lock.json), so npm ci would fail.
+      - run: npm install --no-audit --no-fund
+
       - run: npm run build
-      - run: cp PATH_TO_OUTPUT/index.html PATH_TO_OUTPUT/404.html
-      - run: echo "sparkler.bynovatech.me" > PATH_TO_OUTPUT/CNAME
+
+      # SPA mode outputs _shell.html; GitHub Pages needs index.html and 404.html
+      - name: Prepare static output
+        run: |
+          cp .output/public/_shell.html .output/public/index.html
+          cp .output/public/_shell.html .output/public/404.html
+          echo "sparkler.bynovatech.me" > .output/public/CNAME
+          touch .output/public/.nojekyll
+
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: PATH_TO_OUTPUT
+          path: .output/public
 
   deploy:
     needs: build
